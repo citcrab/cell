@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Science: Cell Study Companion</title>
+    <style>
+        /* ───────────── RESET & BASE ───────────── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            overscroll-behavior: none;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #ebf3ee;
+            color: #1e2b2a;
+            line-height: 1.75;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .app-wrap {
+            width: 100%;
+            height: 100dvh;
+            height: 100vh;
+            margin: 0;
+            background: #ffffff;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            animation: appIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes appIn {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ───────────── HEADER ───────────── */
+        .app-header {
+            background: linear-gradient(145deg, #0f5132, #1a7a4a);
+            padding: 18px 28px;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #a8d5ba;
+            flex-shrink: 0;
+        }
+        .app-header h1 {
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .app-header h1 small {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.88;
+            margin-left: 4px;
+        }
+        .nav-badge {
+            background: rgba(255, 255, 255, 0.18);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(2px);
+            color: #fff;
+            transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        button.nav-badge:hover {
+            background: rgba(255, 255, 255, 0.32);
+            transform: translateY(-1px);
+        }
+        button.nav-badge:active {
+            transform: scale(0.95);
+        }
+
+        /* ───────────── NAV TABS ───────────── */
+        .section-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 14px 20px;
+            background: #f8fbf9;
+            border-bottom: 1px solid #dae8e0;
+            max-height: 140px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .section-tabs button {
+            background: transparent;
+            border: none;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #2d4a40;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+            white-space: nowrap;
+        }
+        .section-tabs button:hover {
+            background: #d4e8de;
+            color: #0f5132;
+            transform: translateY(-1px);
+        }
+        .section-tabs button:active {
+            transform: scale(0.95);
+        }
+        .section-tabs button.active {
+            background: #0f5132;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(15, 81, 50, 0.25);
+            animation: tabPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes tabPop {
+            0% { transform: scale(0.88); }
+            60% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ───────────── PAGE CONTAINER ───────────── */
+        .page-container {
+            padding: 20px 28px 32px;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: pageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .page.active .content-card {
+            animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .page.active .content-card:nth-of-type(1) { animation-delay: 0.04s; }
+        .page.active .content-card:nth-of-type(2) { animation-delay: 0.11s; }
+        .page.active .content-card:nth-of-type(3) { animation-delay: 0.18s; }
+        .page.active .content-card:nth-of-type(4) { animation-delay: 0.25s; }
+        .page.active .content-card:nth-of-type(n+5) { animation-delay: 0.30s; }
+        @keyframes pageIn {
+            0% {
+                opacity: 0;
+                transform: translateY(14px) scale(0.99);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ───────────── CONTENT CARDS ───────────── */
+        .content-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 24px rgba(15, 81, 50, 0.07);
+            border: 1px solid #eaf3ee;
+            transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .content-card:hover {
+            box-shadow: 0 14px 36px rgba(15, 81, 50, 0.12);
+            transform: translateY(-2px);
+        }
+        .content-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f5132;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .content-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a5c3e;
+            margin: 18px 0 8px;
+        }
+        .content-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f6b48;
+            margin: 14px 0 6px;
+        }
+        .content-card p {
+            margin-bottom: 12px;
+            color: #253b34;
+        }
+        .content-card ul,
+        .content-card ol {
+            padding-left: 22px;
+            margin-bottom: 14px;
+        }
+        .content-card li {
+            margin-bottom: 6px;
+        }
+
+        /* ── analogy box ── */
+        .analogy-box {
+            background: #eaf5ef;
+            border-left: 5px solid #198754;
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin: 16px 0 20px;
+        }
+        .analogy-box strong {
+            color: #0f5132;
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .analogy-box p {
+            margin-bottom: 0;
+            color: #1a3d32;
+        }
+
+        /* ── listen btn ── */
+        .listen-btn {
+            background: #0f5132;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .listen-btn {
+            transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+        .listen-btn:hover {
+            background: #1a6e44;
+            transform: scale(1.03);
+            box-shadow: 0 6px 16px rgba(15, 81, 50, 0.25);
+        }
+        .listen-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* ── tables ── */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 16px 0 12px;
+            border-radius: 16px;
+            border: 1px solid #dae8e0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .table-wrap th {
+            background: #0f5132;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .table-wrap td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e4efe8;
+            background: #fafffc;
+        }
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .table-wrap tr:hover td {
+            background: #f2faf5;
+        }
+
+        /* ── nav buttons ── */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0 8px;
+            flex-wrap: wrap;
+        }
+        .nav-controls button {
+            background: #f0f7f3;
+            border: 2px solid #d4e8de;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #0f5132;
+            cursor: pointer;
+            transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease, box-shadow 0.25s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-controls button:hover {
+            background: #0f5132;
+            border-color: #0f5132;
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(15, 81, 50, 0.20);
+            transform: translateY(-2px);
+        }
+        .nav-controls button:active {
+            transform: scale(0.96);
+        }
+        .nav-controls button:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .nav-controls .page-indicator {
+            font-size: 0.85rem;
+            color: #4d6b5f;
+            font-weight: 500;
+        }
+
+        /* ── Osmosis simulator ── */
+        .osmosis-sim {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f4faf7;
+            border-radius: 24px;
+            padding: 24px 20px 20px;
+            margin: 18px 0 10px;
+            border: 1px solid #cde0d6;
+        }
+        .osmosis-sim .cell-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .osmosis-sim .cell-box {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: #d4e8de;
+            border: 4px solid #0f5132;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0f5132;
+            text-align: center;
+            padding: 12px;
+            position: relative;
+            box-shadow: inset 0 0 0 2px rgba(15, 81, 50, 0.1);
+        }
+        .osmosis-sim .cell-box .inner {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background: #b8d9c8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #0a3d28;
+            box-shadow: inset 0 0 0 2px rgba(15, 81, 50, 0.15);
+        }
+        .osmosis-sim .sim-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .osmosis-sim .sim-btns button {
+            padding: 8px 22px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #e4efe8;
+            color: #0f5132;
+        }
+        .osmosis-sim .sim-btns button:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 12px rgba(15, 81, 50, 0.15);
+        }
+        .osmosis-sim .sim-btns button.hypo {
+            background: #a8d5ba;
+            color: #0a3d28;
+        }
+        .osmosis-sim .sim-btns button.iso {
+            background: #cde0d6;
+            color: #0f5132;
+        }
+        .osmosis-sim .sim-btns button.hyper {
+            background: #f0c8c8;
+            color: #6b2e2e;
+        }
+        .osmosis-sim .sim-label {
+            margin-top: 12px;
+            font-weight: 500;
+            color: #1a4d3a;
+            min-height: 1.6em;
+        }
+
+        /* ── SVG container ── */
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 16px 0 10px;
+            padding: 12px;
+            background: #fafffc;
+            border-radius: 20px;
+            border: 1px solid #e4efe8;
+            overflow-x: auto;
+        }
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+        @keyframes draw-line {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        @keyframes glow {
+            0%,
+            100% {
+                filter: drop-shadow(0 0 2px #198754);
+            }
+            50% {
+                filter: drop-shadow(0 0 10px #0f5132);
+            }
+        }
+        @keyframes move-dot {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+        @keyframes spin-slow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .glow {
+            animation: glow 2s infinite;
+        }
+        .bounce {
+            animation: bounce 1.5s infinite;
+        }
+
+        /* connector line style (no arrowheads — plain lines) */
+        .arrow-path {
+            fill: none;
+            stroke: #0f5132;
+            stroke-width: 2;
+            marker-end: none;
+            stroke-linecap: round;
+            stroke-dasharray: 220;
+            stroke-dashoffset: 220;
+            animation: draw-line 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: 0.25s;
+        }
+        .arrow-path-light {
+            fill: none;
+            stroke: #198754;
+            stroke-width: 1.8;
+            stroke-dasharray: 4 3;
+            marker-end: none;
+            stroke-linecap: round;
+        }
+
+        /* ── Quiz ── */
+        .quiz-item {
+            background: #f8fbf9;
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-bottom: 16px;
+            border: 1px solid #dae8e0;
+        }
+        .quiz-item .q-text {
+            font-weight: 600;
+            color: #0f5132;
+            margin-bottom: 10px;
+        }
+        .quiz-item .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .quiz-item .options label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            background: #fff;
+            border: 1.5px solid #dae8e0;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .quiz-item .options label:hover {
+            border-color: #198754;
+            background: #f2faf5;
+        }
+        .quiz-item .options input[type="radio"] {
+            accent-color: #0f5132;
+            width: 18px;
+            height: 18px;
+        }
+        .quiz-item .feedback {
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-weight: 500;
+            display: none;
+        }
+        .quiz-item .feedback.show {
+            display: block;
+        }
+        .quiz-item .feedback.correct {
+            background: #d4edda;
+            color: #0a4a2a;
+            border-left: 5px solid #198754;
+        }
+        .quiz-item .feedback.incorrect {
+            background: #f8dddd;
+            color: #6b2e2e;
+            border-left: 5px solid #d9534f;
+        }
+        .quiz-score {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f5132;
+            text-align: center;
+            padding: 14px;
+            background: #eaf5ef;
+            border-radius: 40px;
+            margin-top: 10px;
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 700px) {
+            .app-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 18px 18px 14px;
+            }
+            .app-header h1 {
+                font-size: 1.2rem;
+            }
+            .page-container {
+                padding: 14px 14px 8px;
+            }
+            .content-card {
+                padding: 18px 16px;
+            }
+            .section-tabs {
+                padding: 10px 12px 4px;
+                gap: 2px;
+            }
+            .section-tabs button {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+            .nav-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-controls button {
+                justify-content: center;
+                padding: 10px 16px;
+            }
+            .osmosis-sim .cell-box {
+                width: 110px;
+                height: 110px;
+            }
+        }
+        @media (max-width: 450px) {
+            .app-header h1 {
+                font-size: 1rem;
+            }
+            .content-card h2 {
+                font-size: 1.2rem;
+            }
+            .content-card {
+                padding: 14px 12px;
+            }
+            .quiz-item {
+                padding: 14px 12px;
+            }
+        }
+
+        .highlight {
+            background: #f0faf4;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #0f5132;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .tag {
+            display: inline-block;
+            background: #d4e8de;
+            color: #0f5132;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrap">
+
+        <!-- ─── HEADER ─── -->
+        <header class="app-header">
+            <h1>
+                🌱 Cell Study Companion
+                <small>NCERT Class 9 · Science</small>
+            </h1>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span class="nav-badge">📘 Chapter 2 · The Fundamental Unit of Life</span>
+                <button id="fullscreenBtn" class="nav-badge" style="cursor:pointer; border:none; display:inline-flex; align-items:center; gap:6px;" onclick="toggleFullscreen()">⛶ Full Screen</button>
+            </div>
+        </header>
+
+        <!-- ─── TAB NAV ─── -->
+        <nav class="section-tabs" id="tabNav">
+            <button class="active" data-page="page-dashboard">🏠 Dashboard</button>
+            <button data-page="page-2.1">2.1 Cells</button>
+            <button data-page="page-2.1.1">2.1.1 Shape</button>
+            <button data-page="page-2.2">2.2 Organisation</button>
+            <button data-page="page-2.2.1">2.2.1 Membrane</button>
+            <button data-page="page-2.2.2">2.2.2 Cell Wall</button>
+            <button data-page="page-2.2.3">2.2.3 Nucleus</button>
+            <button data-page="page-2.3">2.3 Organelles</button>
+            <button data-page="page-2.3.1">2.3.1 ER</button>
+            <button data-page="page-2.3.2">2.3.2 Golgi</button>
+            <button data-page="page-2.3.3">2.3.3 Lysosomes</button>
+            <button data-page="page-2.3.4">2.3.4 Mitochondria</button>
+            <button data-page="page-2.3.5">2.3.5 Plastids</button>
+            <button data-page="page-2.3.6">2.3.6 Vacuoles</button>
+            <button data-page="page-2.4">2.4 Division</button>
+            <button data-page="page-cancer">⚠️ Cancer</button>
+            <button data-page="page-exam">📝 Exam</button>
+        </nav>
+
+        <!-- ─── PAGE CONTAINER ─── -->
+        <div class="page-container" id="pageContainer">
+
+            <!-- ============================================================ -->
+            <!-- DASHBOARD -->
+            <!-- ============================================================ -->
+            <section class="page active" id="page-dashboard">
+                <div class="content-card">
+                    <h2>🧬 Welcome to the Cell Study Companion</h2>
+                    <p><strong>Class 9 · NCERT Science · Chapter 2: The Fundamental Unit of Life</strong></p>
+                    <p>Every living thing — from the tiniest bacterium to the largest whale — is made of <span class="highlight">cells</span>. Cells are the tiny <strong>building blocks</strong> of life. In this companion, we'll explore everything about cells: what they're made of, how they work, and how they divide.</p>
+                    <div class="analogy-box">
+                        <strong>💡 Real-Life Analogy</strong>
+                        <p>Think of your body like a huge building made of bricks. Each tiny brick is a <strong>cell</strong>. Alone, a brick is simple, but millions of bricks together make the whole building. Your body has trillions of cells working together!</p>
+                    </div>
+                    <!-- Animated Cell Banner -->
+                    <div class="svg-container">
+                        <svg width="500" height="120" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="500" height="120" rx="16" fill="#eaf5ef" />
+                            <circle cx="100" cy="60" r="45" fill="#d4e8de" stroke="#0f5132" stroke-width="3">
+                                <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="100" cy="60" r="22" fill="#c0dccd" stroke="#198754" stroke-width="2">
+                                <animate attributeName="r" values="22;24;22" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="100" y="65" text-anchor="middle" font-size="11" font-weight="600" fill="#0f5132">N</text>
+                            <text x="100" y="115" text-anchor="middle" font-size="11" fill="#0f5132">Cell</text>
+
+                            <circle cx="250" cy="60" r="35" fill="#f2faf5" stroke="#198754" stroke-width="2">
+                                <animate attributeName="r" values="35;38;35" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="250" y="65" text-anchor="middle" font-size="14" font-weight="600" fill="#0f5132">🔬</text>
+                            <text x="250" y="115" text-anchor="middle" font-size="11" fill="#0f5132">Study</text>
+
+                            <circle cx="400" cy="60" r="40" fill="#d4e8de" stroke="#0f5132" stroke-width="2">
+                                <animate attributeName="r" values="40;43;40" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="400" y="65" text-anchor="middle" font-size="18" font-weight="600" fill="#0f5132">🧬</text>
+                            <text x="400" y="115" text-anchor="middle" font-size="11" fill="#0f5132">Learn</text>
+                        </svg>
+                    </div>
+                    <div style="background:#eaf5ef; border-radius:20px; padding:18px 22px; text-align:center; margin-top:12px;">
+                        <p style="font-size:1.1rem; font-weight:600; color:#0f5132;">🚀 Ready to learn? Use the tabs above or click below to start!</p>
+                        <button onclick="navigateTo('page-2.1')" style="background:#0f5132; color:#fff; border:none; padding:12px 40px; border-radius:60px; font-weight:600; font-size:1rem; cursor:pointer; margin-top:8px; transition:all 0.2s;">Start Learning →</button>
+                    </div>
+                </div>
+                <div style="text-align:center; color:#4d6b5f; font-size:0.85rem; padding:8px 0 4px;">📖 18 topics · 5 interactive diagrams · Quiz included</div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.1: What are Living Organisms Made of? -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.1">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.1')">🔊 Listen to Page</button>
+                    <h2>2.1 What are Living Organisms Made of?</h2>
+                    <p>All living things are made of <strong>cells</strong>. A cell is the smallest unit of life that can carry out all basic activities — eating, breathing, growing, and reproducing — on its own.</p>
+                    <div class="analogy-box">
+                        <strong>🧱 Brick-and-Wall Analogy</strong>
+                        <p>Just as a wall is built from bricks, your body is built from cells. Each cell is small and simple, but together they form a complex living being.</p>
+                    </div>
+                    <h3>🔬 The Onion Peel Mount Experiment</h3>
+                    <p>Take a thin layer of onion peel, place it on a glass slide, add a drop of water and a stain (like iodine), and cover with a cover slip. Look under a microscope — you'll see tiny <strong>box-like structures</strong> arranged like a honeycomb. Those are <strong>plant cells</strong> with visible cell walls and nuclei.</p>
+
+                    <h3>📜 Historical Discovery Table</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Scientist</th><th>Year</th><th>Discovery</th></tr></thead>
+                            <tbody>
+                                <tr><td>Robert Hooke</td><td>1665</td><td>Observed cork cells under a microscope; named them "cells" (small rooms).</td></tr>
+                                <tr><td>Anton van Leeuwenhoek</td><td>1674</td><td>First to see <strong>living</strong> cells — tiny organisms in pond water.</td></tr>
+                                <tr><td>Robert Brown</td><td>1831</td><td>Discovered the <strong>nucleus</strong> inside plant cells.</td></tr>
+                                <tr><td>Purkinje</td><td>1839</td><td>Coined the term <strong>"protoplasm"</strong> for the living fluid inside cells.</td></tr>
+                                <tr><td>Schleiden &amp; Schwann</td><td>1838–39</td><td>Proposed the <strong>Cell Theory</strong> (plants &amp; animals are made of cells).</td></tr>
+                                <tr><td>Rudolf Virchow</td><td>1855</td><td>Stated that all cells arise from <strong>pre-existing cells</strong>.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>📌 The Three Core Rules of Cell Theory</h3>
+                    <ol>
+                        <li><strong>All living organisms</strong> are made of one or more cells.</li>
+                        <li>The <strong>cell</strong> is the basic unit of structure and function in living things.</li>
+                        <li>All new cells come from <strong>already existing cells</strong> (by division).</li>
+                    </ol>
+                    <div class="analogy-box">
+                        <strong>🧱 Easy Example</strong>
+                        <p>Cell Theory is like saying: "Every house is made of bricks, and every new brick comes from a brick factory." Every living thing is made of cells, and every new cell comes from an old cell splitting.</p>
+                    </div>
+
+                    <!-- SVG: Plant vs Animal cell with arrows -->
+                    <div class="svg-container">
+                        <svg width="500" height="250" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <marker id="arrow" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                                    <path d="M0,0 L6,3 L0,6" fill="#0f5132" />
+                                </marker>
+                                <marker id="arrow-light" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                                    <path d="M0,0 L6,3 L0,6" fill="#198754" />
+                                </marker>
+                            </defs>
+                            <!-- Plant Cell -->
+                            <rect x="20" y="20" width="180" height="180" rx="10" fill="#eaf5ef" stroke="#0f5132" stroke-width="4" />
+                            <rect x="50" y="45" width="120" height="130" rx="6" fill="#d4e8de" stroke="#198754" stroke-width="2.5" />
+                            <circle cx="110" cy="110" r="28" fill="#c0dccd" stroke="#0f5132" stroke-width="2">
+                                <animate attributeName="r" values="28;32;28" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="110" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#0f5132">N</text>
+                            <!-- Arrow to Cell Wall -->
+                            <path d="M110 200 L110 230 L30 230 L30 205" class="arrow-path" />
+                            <text x="15" y="245" font-size="10" fill="#0f5132" font-weight="600">Cell Wall (thick)</text>
+                            <!-- Arrow to Nucleus -->
+                            <path d="M110 85 L110 70 L160 70 L160 80" class="arrow-path" stroke="#198754" />
+                            <text x="165" y="68" font-size="9" fill="#198754" font-weight="600">Nucleus</text>
+
+                            <!-- Animal Cell -->
+                            <rect x="280" y="25" width="190" height="170" rx="85" fill="#f2faf5" stroke="#0f5132" stroke-width="4" />
+                            <circle cx="375" cy="110" r="32" fill="#d4e8de" stroke="#198754" stroke-width="2.5">
+                                <animate attributeName="r" values="32;36;32" dur="2.5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="375" cy="110" r="18" fill="#c0dccd" stroke="#0f5132" stroke-width="1.8" />
+                            <text x="375" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#0f5132">N</text>
+                            <!-- Arrow to Cell Membrane -->
+                            <path d="M375 60 L375 45 L470 45 L470 80" class="arrow-path" stroke="#198754" />
+                            <text x="475" y="60" font-size="9" fill="#198754" font-weight="600">Cell Membrane</text>
+                            <text x="375" y="215" text-anchor="middle" font-size="12" fill="#0f5132" font-weight="600">Animal Cell (rounded, no wall)</text>
+                            <text x="110" y="215" text-anchor="middle" font-size="12" fill="#0f5132" font-weight="600">Plant Cell (box-shaped)</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-dashboard')">← Dashboard</button>
+                    <span class="page-indicator">2.1 · What are Living Organisms Made of?</span>
+                    <button onclick="navigateTo('page-2.1.1')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.1.1: Cell Shape, Size, and Diversity -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.1.1">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.1.1')">🔊 Listen to Page</button>
+                    <h2>2.1.1 Cell Shape, Size, and Diversity</h2>
+                    <p>Cells come in many shapes and sizes, depending on the job they do. Most are microscopic (measured in <strong>micrometres</strong> — millionths of a metre), but some can be surprisingly large.</p>
+
+                    <h3>🧫 Organisms by Cell Count</h3>
+                    <ul>
+                        <li><strong>Unicellular</strong> — made of a single cell (e.g., <em>Amoeba</em>, <em>Chlamydomonas</em>, <em>Paramecium</em>, bacteria).</li>
+                        <li><strong>Multicellular</strong> — made of many cells (e.g., fungi, plants, animals).</li>
+                    </ul>
+
+                    <!-- Animated Shape Showcase -->
+                    <div class="svg-container">
+                        <svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Amoeba -->
+                            <path d="M30 100 Q50 60 90 70 Q120 40 150 70 Q180 50 190 90 Q210 130 170 150 Q140 180 90 160 Q50 180 30 140 Q10 120 30 100" fill="#d4e8de" stroke="#0f5132" stroke-width="2">
+                                <animate attributeName="d" dur="4s" repeatCount="indefinite" values="
+                                    M30 100 Q50 60 90 70 Q120 40 150 70 Q180 50 190 90 Q210 130 170 150 Q140 180 90 160 Q50 180 30 140 Q10 120 30 100;
+                                    M25 105 Q55 55 95 65 Q125 35 155 75 Q185 55 195 95 Q215 135 175 155 Q145 185 95 165 Q55 185 35 145 Q15 125 25 105;
+                                    M30 100 Q50 60 90 70 Q120 40 150 70 Q180 50 190 90 Q210 130 170 150 Q140 180 90 160 Q50 180 30 140 Q10 120 30 100" />
+                            </path>
+                            <text x="110" y="195" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Amoeba (changing shape)</text>
+                            <path d="M20 30 L40 50" class="arrow-path-light" />
+                            <text x="5" y="25" font-size="8" fill="#198754">Pseudopodia</text>
+
+                            <!-- Neuron -->
+                            <circle cx="320" cy="100" r="15" fill="#c0dccd" stroke="#0f5132" stroke-width="2" />
+                            <path d="M320 115 L320 180 L300 180 L340 180" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <path d="M310 130 L290 110 L310 110 M330 130 L350 110 L330 110 M315 140 L295 145 L305 155 M325 140 L345 145 L335 155" stroke="#0f5132" stroke-width="2" fill="none" />
+                            <circle cx="320" cy="180" r="4" fill="#198754">
+                                <animate attributeName="r" values="4;8;4" dur="1s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="320" y="195" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Neuron (signal relay)</text>
+                            <path d="M355 100 L380 100" class="arrow-path" />
+                            <text x="385" y="103" font-size="8" fill="#0f5132">Axon</text>
+
+                            <!-- RBC -->
+                            <ellipse cx="500" cy="100" rx="30" ry="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="2">
+                                <animate attributeName="ry" values="15;18;15" dur="2s" repeatCount="indefinite" />
+                            </ellipse>
+                            <text x="500" y="195" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">RBC (biconcave)</text>
+                            <path d="M530 100 L560 100" class="arrow-path-light" />
+                            <text x="565" y="103" font-size="8" fill="#198754">flexible</text>
+                        </svg>
+                    </div>
+
+                    <div class="analogy-box">
+                        <strong>📏 Scale of Dimensions</strong>
+                        <p>Tiny bacteria (≈ 1 µm) → typical plant/animal cells (10–100 µm) → a giraffe's nerve cell can be <strong>over a metre long</strong> — just one single cell!</p>
+                    </div>
+                    <p><span class="tag">💡 Did you know?</span> Thousands of red blood cells can fit on the head of a pin!</p>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.1')">← Previous Section</button>
+                    <span class="page-indicator">2.1.1 · Shape, Size &amp; Diversity</span>
+                    <button onclick="navigateTo('page-2.2')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.2: Structural Organisation of a Cell -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.2">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.2')">🔊 Listen to Page</button>
+                    <h2>2.2 What is the Structural Organisation of a Cell?</h2>
+                    <p>Inside a cell, different parts do different jobs — this is called <strong>division of labour</strong>. Just like a factory has separate departments, a cell has specialized structures called <strong>organelles</strong>.</p>
+                    <p>Almost every cell has three basic features:</p>
+                    <ol>
+                        <li><strong>Plasma Membrane</strong> — the outer boundary.</li>
+                        <li><strong>Nucleus</strong> — the control centre.</li>
+                        <li><strong>Cytoplasm</strong> — the jelly-like filling.</li>
+                    </ol>
+                    <div class="analogy-box">
+                        <strong>🏭 Easy Example</strong>
+                        <p>A cell is like a factory: the nucleus is the manager's office, the cytoplasm is the workshop floor, and the membrane is the factory wall with gates.</p>
+                    </div>
+                    <!-- Animated Generic Cell -->
+                    <div class="svg-container">
+                        <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="200" cy="120" r="90" fill="#f2faf5" stroke="#0f5132" stroke-width="3" />
+                            <circle cx="200" cy="120" r="30" fill="#c0dccd" stroke="#198754" stroke-width="2">
+                                <animate attributeName="r" values="30;35;30" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="200" y="126" text-anchor="middle" font-size="12" font-weight="600" fill="#0f5132">N</text>
+                            <!-- Animated scanning line -->
+                            <line x1="110" y1="30" x2="110" y2="210" stroke="#198754" stroke-width="2" stroke-dasharray="4 6">
+                                <animate attributeName="x1" values="110;290;110" dur="4s" repeatCount="indefinite" />
+                                <animate attributeName="x2" values="110;290;110" dur="4s" repeatCount="indefinite" />
+                            </line>
+                            <!-- Labels with arrows -->
+                            <path d="M290 120 L320 120 L320 80" class="arrow-path" stroke="#198754" />
+                            <text x="325" y="75" font-size="10" fill="#198754" font-weight="600">Plasma Membrane</text>
+                            <path d="M200 155 L200 180 L250 180 L250 160" class="arrow-path" />
+                            <text x="255" y="183" font-size="10" fill="#0f5132" font-weight="600">Cytoplasm</text>
+                            <path d="M170 120 L140 120 L140 60" class="arrow-path" />
+                            <text x="100" y="55" font-size="10" fill="#0f5132" font-weight="600">Nucleus</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.1.1')">← Previous Section</button>
+                    <span class="page-indicator">2.2 · Structural Organisation</span>
+                    <button onclick="navigateTo('page-2.2.1')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.2.1: Plasma Membrane -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.2.1">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.2.1')">🔊 Listen to Page</button>
+                    <h2>2.2.1 Plasma Membrane (Cell Membrane)</h2>
+                    <p>The <strong>plasma membrane</strong> is the thin, flexible outer covering of every cell. It is made mainly of <strong>lipids</strong> (fats) and <strong>proteins</strong>. It is <strong>selectively permeable</strong> — it allows some substances to pass through but blocks others.</p>
+                    <div class="analogy-box">
+                        <strong>🚪 Security Guard Analogy</strong>
+                        <p>The membrane is like a security guard at a gate: it lets in useful substances (food, oxygen) and keeps out harmful ones, while allowing waste to leave.</p>
+                    </div>
+
+                    <h3>🔁 Diffusion</h3>
+                    <p><strong>Diffusion</strong> is the movement of particles (gases, liquids) from a region of <strong>high concentration</strong> to <strong>low concentration</strong> until evenly spread. Example: CO₂ and O₂ move in and out of cells this way.</p>
+                    <!-- Diffusion SVG -->
+                    <div class="svg-container">
+                        <svg width="300" height="100" viewBox="0 0 300 100">
+                            <rect x="10" y="10" width="280" height="80" rx="8" fill="#eaf5ef" stroke="#198754" stroke-width="1.5" />
+                            <text x="150" y="30" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Diffusion: High → Low</text>
+                            <circle cx="50" cy="55" r="10" fill="#198754" opacity="0.8">
+                                <animate attributeName="cx" values="50;250" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="70" cy="65" r="8" fill="#198754" opacity="0.7">
+                                <animate attributeName="cx" values="70;230" dur="3.5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="40" cy="70" r="12" fill="#198754" opacity="0.6">
+                                <animate attributeName="cx" values="40;260" dur="4s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="50" y="95" text-anchor="middle" font-size="8" fill="#198754">High conc.</text>
+                            <text x="250" y="95" text-anchor="middle" font-size="8" fill="#198754">Low conc.</text>
+                            <path d="M200 50 L230 50" class="arrow-path" />
+                        </svg>
+                    </div>
+
+                    <h3>💧 Osmosis</h3>
+                    <p><strong>Osmosis</strong> is a special type of diffusion — the movement of <strong>water molecules</strong> across a semi-permeable membrane from a region of high water concentration to low water concentration.</p>
+
+                    <!-- Osmosis Simulator (enhanced with water molecules) -->
+                    <div class="osmosis-sim" id="osmosisSim">
+                        <div class="cell-visual">
+                            <div style="position:relative; width:180px; height:180px; display:flex; align-items:center; justify-content:center;">
+                                <div class="cell-box" id="cellBox">
+                                    <div class="inner" id="cellInner">Cell</div>
+                                </div>
+                                <!-- Water molecules outside -->
+                                <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;" id="waterMolecules">
+                                    <circle cx="30" cy="30" r="4" fill="#198754" opacity="0.6">
+                                        <animate attributeName="cx" values="30;60;30" dur="3s" repeatCount="indefinite" />
+                                        <animate attributeName="cy" values="30;60;30" dur="3s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="150" cy="40" r="4" fill="#198754" opacity="0.6">
+                                        <animate attributeName="cx" values="150;120;150" dur="2.5s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="20" cy="140" r="4" fill="#198754" opacity="0.6">
+                                        <animate attributeName="cy" values="140;100;140" dur="3.5s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="160" cy="150" r="4" fill="#198754" opacity="0.6">
+                                        <animate attributeName="cx" values="160;130;160" dur="2.8s" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                                <div style="font-size:0.8rem; font-weight:500; color:#0f5132;">⬅️ Water movement</div>
+                                <svg width="60" height="40" viewBox="0 0 60 40">
+                                    <rect x="5" y="5" width="50" height="30" rx="4" fill="none" stroke="#198754" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <text x="30" y="26" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">H₂O</text>
+                                    <path d="M10 28 L25 28 M15 32 L30 32 M20 36 L35 36" stroke="#0f5132" stroke-width="1.5" opacity="0.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="sim-btns">
+                            <button class="hypo" onclick="setOsmosis('hypo')">💧 Hypotonic (swells)</button>
+                            <button class="iso" onclick="setOsmosis('iso')">⚖️ Isotonic (normal)</button>
+                            <button class="hyper" onclick="setOsmosis('hyper')">🧂 Hypertonic (shrinks)</button>
+                        </div>
+                        <div class="sim-label" id="osmosisLabel">💧 Click a button to see the effect!</div>
+                        <div style="font-size:0.8rem; color:#4d6b5f; margin-top:8px; text-align:center;">
+                            <span class="tag">Turgidity</span> <span class="tag">Plasmolysis</span>
+                        </div>
+                    </div>
+
+                    <h3>🍽️ Endocytosis</h3>
+                    <p>The flexible membrane allows some cells (like <em>Amoeba</em>) to <strong>engulf</strong> food particles by wrapping the membrane around them — this is called <strong>endocytosis</strong>.</p>
+                    <div class="analogy-box">
+                        <strong>🫧 Easy Example</strong>
+                        <p>Endocytosis is like using a plastic bag to pick up something — the bag wraps around the object and brings it inside.</p>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.2')">← Previous Section</button>
+                    <span class="page-indicator">2.2.1 · Plasma Membrane</span>
+                    <button onclick="navigateTo('page-2.2.2')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.2.2: Cell Wall -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.2.2">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.2.2')">🔊 Listen to Page</button>
+                    <h2>2.2.2 Cell Wall</h2>
+                    <p>The <strong>cell wall</strong> is a tough, rigid, non-living outer layer found in <strong>plants, fungi, and bacteria</strong> (but <em>not</em> in animal cells). In plants, it's made of <strong>cellulose</strong>.</p>
+                    <p><strong>Functions:</strong></p>
+                    <ul>
+                        <li>Provides extra strength and support.</li>
+                        <li>Gives the cell a <strong>fixed box-like shape</strong>.</li>
+                        <li>Prevents the cell from bursting when water enters by osmosis — it exerts <strong>counter-pressure</strong>.</li>
+                    </ul>
+                    <div class="analogy-box">
+                        <strong>📦 Balloon-in-a-Box Analogy</strong>
+                        <p>The cell membrane is like a thin balloon, and the cell wall is like a <strong>cardboard box</strong> around it. The box keeps the balloon from expanding too much and gives it a rigid shape. Animal cells have no box — they stay rounded and flexible.</p>
+                    </div>
+                    <!-- Balloon & Box SVG -->
+                    <div class="svg-container">
+                        <svg width="400" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="160" height="140" rx="8" fill="none" stroke="#0f5132" stroke-width="4" />
+                            <circle cx="100" cy="90" r="50" fill="#d4e8de" stroke="#198754" stroke-width="2">
+                                <animate attributeName="r" values="50;60;50" dur="2s" repeatCount="indefinite" />
+                                <animate attributeName="cy" values="90;80;90" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="100" y="175" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">Plant cell (with wall)</text>
+                            <text x="100" y="50" text-anchor="middle" font-size="9" fill="#198754">Balloon (membrane)</text>
+                            <text x="100" y="170" text-anchor="middle" font-size="8" fill="#198754">⬅️ Box (wall) prevents bursting</text>
+
+                            <circle cx="280" cy="90" r="55" fill="#f2faf5" stroke="#b34a4a" stroke-width="2">
+                                <animate attributeName="r" values="55;65;55" dur="1.8s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="280" y="175" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">Animal cell (no wall)</text>
+                            <text x="280" y="55" text-anchor="middle" font-size="9" fill="#b34a4a">⚠️ Can burst (lysis)</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.2.1')">← Previous Section</button>
+                    <span class="page-indicator">2.2.2 · Cell Wall</span>
+                    <button onclick="navigateTo('page-2.2.3')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.2.3: Nucleus -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.2.3">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.2.3')">🔊 Listen to Page</button>
+                    <h2>2.2.3 Nucleus — The Control Centre</h2>
+                    <p>The <strong>nucleus</strong> is the round, dense structure that controls all cell activities. It is covered by a <strong>double-layered nuclear membrane</strong> with tiny <strong>nuclear pores</strong> that let materials move in and out. Inside is the dense <strong>nucleolus</strong>, which makes ribosomes.</p>
+                    <p><strong>Genetic Blueprint:</strong> The nucleus contains <strong>DNA</strong> (the hereditary material). In resting cells, DNA is in the form of tangled <strong>chromatin</strong>. During cell division, it condenses into rod-shaped <strong>chromosomes</strong>. <strong>Genes</strong> are units of heredity on the DNA.</p>
+
+                    <!-- Nucleus SVG -->
+                    <div class="svg-container">
+                        <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="200" cy="100" r="70" fill="#eaf5ef" stroke="#0f5132" stroke-width="3" />
+                            <circle cx="200" cy="100" r="55" fill="#d4e8de" stroke="#198754" stroke-width="2" stroke-dasharray="6 4">
+                                <animate attributeName="stroke-dashoffset" values="0;20" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Nucleolus -->
+                            <circle cx="200" cy="100" r="18" fill="#c0dccd" stroke="#0f5132" stroke-width="2" />
+                            <text x="200" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#0f5132">Nu</text>
+                            <!-- Chromatin threads -->
+                            <path d="M160 70 Q180 80 170 100 Q190 90 200 110" stroke="#198754" stroke-width="2" fill="none">
+                                <animate attributeName="d" values="M160 70 Q180 80 170 100 Q190 90 200 110;M160 75 Q180 85 170 105 Q190 95 200 115;M160 70 Q180 80 170 100 Q190 90 200 110" dur="3s" repeatCount="indefinite" />
+                            </path>
+                            <!-- Pores -->
+                            <circle cx="150" cy="70" r="5" fill="#fff" stroke="#0f5132" stroke-width="1.5">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="240" cy="80" r="5" fill="#fff" stroke="#0f5132" stroke-width="1.5">
+                                <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Labels -->
+                            <path d="M200 170 L200 190 L100 190 L100 175" class="arrow-path" />
+                            <text x="50" y="195" font-size="10" fill="#0f5132" font-weight="600">Nuclear membrane (double)</text>
+                            <path d="M150 65 L120 40" class="arrow-path-light" />
+                            <text x="80" y="35" font-size="8" fill="#198754">Pores</text>
+                            <path d="M230 100 L280 100 L280 130" class="arrow-path" />
+                            <text x="285" y="125" font-size="10" fill="#0f5132" font-weight="600">Chromatin (DNA)</text>
+                            <path d="M220 100 L260 100 L260 70" class="arrow-path-light" />
+                            <text x="265" y="65" font-size="8" fill="#198754">Nucleolus</text>
+                        </svg>
+                    </div>
+
+                    <h3>🧬 Prokaryotic vs Eukaryotic Cells</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Feature</th><th>Prokaryotic</th><th>Eukaryotic</th></tr></thead>
+                            <tbody>
+                                <tr><td>Nucleus</td><td>No true nucleus; DNA in <strong>nucleoid</strong> region</td><td>True nucleus with nuclear membrane</td></tr>
+                                <tr><td>Size</td><td>Very small (1–10 µm)</td><td>Larger (5–100 µm)</td></tr>
+                                <tr><td>Membrane-bound organelles</td><td>Absent</td><td>Present</td></tr>
+                                <tr><td>Examples</td><td>Bacteria</td><td>Plants, animals, fungi</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="analogy-box">
+                        <strong>🏢 Studio vs Multi-Room House</strong>
+                        <p>Prokaryotic = studio apartment (everything in one space). Eukaryotic = multi-room house (separate departments).</p>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.2.2')">← Previous Section</button>
+                    <span class="page-indicator">2.2.3 · Nucleus</span>
+                    <button onclick="navigateTo('page-2.2.4')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.2.4: Cytoplasm -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.2.4">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.2.4')">🔊 Listen to Page</button>
+                    <h2>2.2.4 Cytoplasm</h2>
+                    <p>The <strong>cytoplasm</strong> is the jelly-like fluid (cytosol) that fills the space between the cell membrane and the nucleus. It holds all the organelles in place, like a sea in which they float. Many <strong>metabolic reactions</strong> (chemical processes) happen here.</p>
+                    <div class="analogy-box">
+                        <strong>🪑 Easy Example</strong>
+                        <p>If organelles are like furniture in a room, the cytoplasm is the <strong>floor and air</strong> that holds everything together.</p>
+                    </div>
+                    <div class="svg-container">
+                        <svg width="300" height="150" viewBox="0 0 300 150">
+                            <circle cx="150" cy="75" r="60" fill="#f2faf5" stroke="#0f5132" stroke-width="2" />
+                            <circle cx="150" cy="75" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <text x="150" y="80" text-anchor="middle" font-size="9" font-weight="600" fill="#0f5132">N</text>
+                            <!-- Floating particles -->
+                            <circle cx="120" cy="50" r="4" fill="#198754" opacity="0.5">
+                                <animate attributeName="cx" values="120;140;120" dur="2s" repeatCount="indefinite" />
+                                <animate attributeName="cy" values="50;60;50" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="180" cy="90" r="5" fill="#198754" opacity="0.5">
+                                <animate attributeName="cx" values="180;160;180" dur="2.5s" repeatCount="indefinite" />
+                                <animate attributeName="cy" values="90;80;90" dur="2.5s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="150" y="145" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Cytoplasm (jelly-like)</text>
+                            <path d="M120 50 L90 30" class="arrow-path-light" />
+                            <text x="60" y="25" font-size="8" fill="#198754">Organelles</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.2.3')">← Previous Section</button>
+                    <span class="page-indicator">2.2.4 · Cytoplasm</span>
+                    <button onclick="navigateTo('page-2.3')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3: Cell Organelles (intro) -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3')">🔊 Listen to Page</button>
+                    <h2>2.3 Cell Organelles</h2>
+                    <p>Complex eukaryotic cells need separate <strong>membrane-bound departments</strong> to perform different tasks safely at the same time. These departments are called <strong>organelles</strong> — tiny structures inside the cell, each with a specific job.</p>
+                    <div class="analogy-box">
+                        <strong>🏭 Factory Analogy</strong>
+                        <p>Nucleus = manager, Mitochondria = power plant, ER = transport, Golgi = packaging, Lysosomes = cleaning crew.</p>
+                    </div>
+                    <!-- Cell City Map -->
+                    <div class="svg-container">
+                        <svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="500" height="200" rx="12" fill="#fafffc" stroke="#dae8e0" stroke-width="1.5" />
+                            <circle cx="100" cy="100" r="25" fill="#c0dccd" stroke="#0f5132" stroke-width="2" />
+                            <text x="100" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#0f5132">N</text>
+                            <rect x="180" y="40" width="60" height="30" rx="6" fill="#d4e8de" stroke="#198754" stroke-width="1.5" />
+                            <text x="210" y="60" text-anchor="middle" font-size="8" fill="#0f5132">ER</text>
+                            <rect x="300" y="100" width="50" height="40" rx="6" fill="#eaf5ef" stroke="#0f5132" stroke-width="1.5" />
+                            <text x="325" y="125" text-anchor="middle" font-size="8" fill="#0f5132">Golgi</text>
+                            <circle cx="420" cy="60" r="18" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <text x="420" y="65" text-anchor="middle" font-size="8" fill="#b34a4a">Ly</text>
+                            <ellipse cx="420" cy="150" rx="20" ry="12" fill="#f2faf5" stroke="#198754" stroke-width="1.5" />
+                            <text x="420" y="154" text-anchor="middle" font-size="8" fill="#198754">Mito</text>
+                            <!-- Animated arrows showing flow -->
+                            <path d="M130 100 L175 100" stroke="#198754" stroke-width="2" stroke-dasharray="4 3">
+                                <animate attributeName="stroke-dashoffset" values="0;14" dur="1s" repeatCount="indefinite" />
+                            </path>
+                            <path d="M240 70 L295 105" stroke="#198754" stroke-width="2" stroke-dasharray="4 3">
+                                <animate attributeName="stroke-dashoffset" values="0;14" dur="1.2s" repeatCount="indefinite" />
+                            </path>
+                            <path d="M350 120 L395 70" stroke="#198754" stroke-width="2" stroke-dasharray="4 3">
+                                <animate attributeName="stroke-dashoffset" values="0;14" dur="1.5s" repeatCount="indefinite" />
+                            </path>
+                            <text x="250" y="190" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Organelle interactions (animated)</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.2.4')">← Previous Section</button>
+                    <span class="page-indicator">2.3 · Cell Organelles</span>
+                    <button onclick="navigateTo('page-2.3.1')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.1: Endoplasmic Reticulum -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.1">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.1')">🔊 Listen to Page</button>
+                    <h2>2.3.1 Endoplasmic Reticulum (ER)</h2>
+                    <p>The <strong>ER</strong> is a vast continuous network of tubes and sheets spreading through the cytoplasm. It is connected to the nuclear membrane.</p>
+                    <ul>
+                        <li><strong>Rough ER (RER)</strong> — has <strong>ribosomes</strong> on its surface (looks "rough"). It synthesizes and folds <strong>proteins</strong>.</li>
+                        <li><strong>Smooth ER (SER)</strong> — no ribosomes. It manufactures <strong>lipids</strong> (fats) and <strong>hormones</strong>, and detoxifies poisons.</li>
+                    </ul>
+                    <p><strong>Membrane Biogenesis:</strong> The cell uses its own made proteins and lipids to build and repair cell membranes.</p>
+                    <div class="analogy-box">
+                        <strong>🚚 Transport Highway</strong>
+                        <p>The ER is like the <strong>corridors and conveyor belts</strong> of a factory — moving materials from one department to another.</p>
+                    </div>
+                    <!-- ER SVG with moving particles -->
+                    <div class="svg-container">
+                        <svg width="500" height="220" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Nuclear envelope -->
+                            <rect x="20" y="40" width="80" height="80" rx="8" fill="#d4e8de" stroke="#0f5132" stroke-width="2.5" />
+                            <rect x="30" y="50" width="60" height="60" rx="6" fill="#eaf5ef" stroke="#198754" stroke-width="1.8" />
+                            <text x="60" y="82" text-anchor="middle" font-size="11" font-weight="600" fill="#0f5132">Nucleus</text>
+                            <!-- ER channels -->
+                            <path d="M100 60 L140 60 L170 70 L210 65 L250 80 L290 75 L330 90 L370 85 L410 100 L450 95" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <path d="M100 80 L140 85 L170 95 L210 90 L250 105 L290 100 L330 115 L370 110 L410 125 L450 120" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <!-- Ribosomes on RER -->
+                            <circle cx="130" cy="58" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="160" cy="65" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="190" cy="68" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="220" cy="73" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="260" cy="78" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="290" cy="73" r="5" fill="#198754" opacity="0.9">
+                                <animate attributeName="opacity" values="1;0.5;1" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Moving particles (proteins/lipids) -->
+                            <circle r="6" fill="#b34a4a">
+                                <animateMotion dur="4s" repeatCount="indefinite" path="M100 60 L140 60 L170 70 L210 65 L250 80 L290 75 L330 90 L370 85 L410 100 L450 95" />
+                            </circle>
+                            <circle r="6" fill="#198754">
+                                <animateMotion dur="4s" repeatCount="indefinite" path="M100 80 L140 85 L170 95 L210 90 L250 105 L290 100 L330 115 L370 110 L410 125 L450 120" />
+                            </circle>
+                            <!-- Labels -->
+                            <text x="250" y="170" text-anchor="middle" font-size="9" fill="#0f5132" font-weight="600">Rough ER (with ribosomes)</text>
+                            <text x="380" y="170" text-anchor="middle" font-size="9" fill="#0f5132" font-weight="600">Smooth ER</text>
+                            <path d="M280 160 L280 140" class="arrow-path-light" />
+                            <path d="M380 160 L380 135" class="arrow-path-light" />
+                            <text x="250" y="195" text-anchor="middle" font-size="10" fill="#4d6b5f">⬅️ Ribosomes (protein synthesis)</text>
+                            <text x="410" y="195" text-anchor="middle" font-size="10" fill="#4d6b5f">⬅️ Lipid synthesis</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3')">← Previous Section</button>
+                    <span class="page-indicator">2.3.1 · Endoplasmic Reticulum</span>
+                    <button onclick="navigateTo('page-2.3.2')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.2: Golgi Apparatus -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.2">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.2')">🔊 Listen to Page</button>
+                    <h2>2.3.2 Golgi Apparatus</h2>
+                    <p>Discovered by <strong>Camillo Golgi</strong>, the Golgi apparatus is a system of flat, parallel membrane sacs called <strong>cisternae</strong>.</p>
+                    <p><strong>Function:</strong> It receives materials from the ER, <strong>modifies</strong> them, packages them into <strong>vesicles</strong>, and ships them out. It is also involved in making <strong>lysosomes</strong>.</p>
+                    <div class="analogy-box">
+                        <strong>📦 Post-Office Analogy</strong>
+                        <p>The Golgi apparatus works like a <strong>post office</strong> — it receives packages (proteins/lipids) from the ER, wraps and labels them properly, and sends them to the right address.</p>
+                    </div>
+                    <!-- Golgi SVG -->
+                    <div class="svg-container">
+                        <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M120 60 Q160 50 200 60 Q240 70 280 60" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <path d="M110 80 Q160 70 200 80 Q240 90 290 80" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <path d="M120 100 Q160 90 200 100 Q240 110 280 100" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <path d="M130 120 Q160 110 200 120 Q240 130 270 120" stroke="#0f5132" stroke-width="3" fill="none" />
+                            <!-- Vesicle budding -->
+                            <circle cx="200" cy="45" r="10" fill="#d4e8de" stroke="#0f5132" stroke-width="2">
+                                <animate attributeName="cy" values="45;20;45" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="280" cy="45" r="8" fill="#d4e8de" stroke="#198754" stroke-width="1.5">
+                                <animate attributeName="cx" values="280;320;280" dur="2.5s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Labels -->
+                            <text x="200" y="165" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">Golgi Apparatus (cisternae)</text>
+                            <path d="M200 35 L200 15 L250 15 L250 40" class="arrow-path" />
+                            <text x="255" y="12" font-size="9" fill="#0f5132">Vesicle</text>
+                            <path d="M280 45 L310 45" class="arrow-path-light" />
+                            <text x="315" y="48" font-size="8" fill="#198754">Shipping</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.1')">← Previous Section</button>
+                    <span class="page-indicator">2.3.2 · Golgi Apparatus</span>
+                    <button onclick="navigateTo('page-2.3.3')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.3: Lysosomes -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.3">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.3')">🔊 Listen to Page</button>
+                    <h2>2.3.3 Lysosomes — The "Suicide Bags"</h2>
+                    <p><strong>Lysosomes</strong> are single-membrane sacs filled with powerful digestive (hydrolytic) enzymes, made by the RER.</p>
+                    <p><strong>Functions:</strong> Waste disposal, digest worn-out organelles, attack pathogens.</p>
+                    <p>Called <strong>"Suicide Bags"</strong> because if a cell is badly damaged, lysosomes can burst and digest the entire cell from inside (<strong>autolysis</strong>).</p>
+                    <div class="analogy-box">
+                        <strong>🧹 Cleaning &amp; Security</strong>
+                        <p>Lysosomes are like the <strong>cleaning and security staff</strong> — they digest garbage and intruders. If the building is beyond repair, they trigger a controlled demolition.</p>
+                    </div>
+                    <!-- Lysosome SVG -->
+                    <div class="svg-container">
+                        <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="75" r="30" fill="#f0d8d8" stroke="#b34a4a" stroke-width="2" />
+                            <text x="100" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#b34a4a">Lys</text>
+                            <circle cx="250" cy="75" r="25" fill="#eaf5ef" stroke="#198754" stroke-width="2" />
+                            <text x="250" y="80" text-anchor="middle" font-size="9" font-weight="600" fill="#198754">Food</text>
+                            <!-- Fusion animation -->
+                            <circle cx="160" cy="75" r="15" fill="#f5e0e0" stroke="#b34a4a" stroke-width="1.5">
+                                <animate attributeName="cx" values="160;190;220;250" dur="3s" repeatCount="indefinite" />
+                                <animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="330" y="80" text-anchor="middle" font-size="9" fill="#b34a4a">Digested</text>
+                            <text x="200" y="140" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Lysosome fuses with food vacuole</text>
+                            <path d="M130 75 L145 75" class="arrow-path" />
+                            <path d="M275 75 L300 75" class="arrow-path-light" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.2')">← Previous Section</button>
+                    <span class="page-indicator">2.3.3 · Lysosomes</span>
+                    <button onclick="navigateTo('page-2.3.4')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.4: Mitochondria -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.4">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.4')">🔊 Listen to Page</button>
+                    <h2>2.3.4 Mitochondria — The Powerhouse</h2>
+                    <p><strong>Mitochondria</strong> are double-membrane organelles. The outer layer is porous, and the inner layer is deeply folded into <strong>cristae</strong> to maximize surface area for energy-making reactions.</p>
+                    <p>They produce <strong>ATP (Adenosine Triphosphate)</strong> — the energy currency of the cell — through <strong>cellular respiration</strong>.</p>
+                    <p><strong>Semi-Autonomous:</strong> Mitochondria have their own circular DNA and ribosomes to make some of their own proteins.</p>
+                    <div class="analogy-box">
+                        <strong>⚡ Power Plant Analogy</strong>
+                        <p>Mitochondria are like the <strong>power plant</strong> of a city — they "burn fuel" (food) to generate the electricity (ATP) that runs everything else in the cell.</p>
+                    </div>
+                    <!-- Mitochondria SVG -->
+                    <div class="svg-container">
+                        <svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="200" cy="100" rx="120" ry="60" fill="#eaf5ef" stroke="#0f5132" stroke-width="3" />
+                            <ellipse cx="200" cy="100" rx="100" ry="48" fill="#d4e8de" stroke="#198754" stroke-width="2" />
+                            <!-- Cristae -->
+                            <path d="M110 95 Q140 70 170 95 Q200 70 230 95 Q260 70 290 95" stroke="#0f5132" stroke-width="3" fill="none">
+                                <animate attributeName="d" values="M110 95 Q140 70 170 95 Q200 70 230 95 Q260 70 290 95;M110 95 Q140 80 170 95 Q200 80 230 95 Q260 80 290 95;M110 95 Q140 70 170 95 Q200 70 230 95 Q260 70 290 95" dur="2s" repeatCount="indefinite" />
+                            </path>
+                            <path d="M110 105 Q140 130 170 105 Q200 130 230 105 Q260 130 290 105" stroke="#0f5132" stroke-width="3" fill="none">
+                                <animate attributeName="d" values="M110 105 Q140 130 170 105 Q200 130 230 105 Q260 130 290 105;M110 105 Q140 120 170 105 Q200 120 230 105 Q260 120 290 105;M110 105 Q140 130 170 105 Q200 130 230 105 Q260 130 290 105" dur="2s" repeatCount="indefinite" />
+                            </path>
+                            <!-- ATP particles -->
+                            <circle r="6" fill="#ffc107">
+                                <animateMotion dur="2s" repeatCount="indefinite" path="M250 70 L350 40 L380 70" />
+                            </circle>
+                            <circle r="6" fill="#ffc107">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" path="M250 130 L350 160 L380 130" />
+                            </circle>
+                            <text x="380" y="40" font-size="10" font-weight="600" fill="#ffc107">ATP</text>
+                            <!-- Labels -->
+                            <path d="M90 50 L60 30" class="arrow-path" />
+                            <text x="30" y="25" font-size="9" fill="#0f5132" font-weight="600">Outer membrane</text>
+                            <path d="M90 150 L60 170" class="arrow-path" />
+                            <text x="20" y="185" font-size="9" fill="#0f5132" font-weight="600">Inner membrane (cristae)</text>
+                            <path d="M280 100 L330 100 L330 130" class="arrow-path-light" />
+                            <text x="335" y="125" font-size="9" fill="#198754">Matrix</text>
+                            <text x="200" y="195" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">Mitochondria: cristae increase surface area for ATP production</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.3')">← Previous Section</button>
+                    <span class="page-indicator">2.3.4 · Mitochondria</span>
+                    <button onclick="navigateTo('page-2.3.5')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.5: Plastids -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.5">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.5')">🔊 Listen to Page</button>
+                    <h2>2.3.5 Plastids (Plants Only)</h2>
+                    <p><strong>Plastids</strong> are double-membrane organelles found only in plant cells. They have their own DNA and ribosomes.</p>
+                    <ul>
+                        <li><strong>Chloroplasts</strong> — green, contain <strong>chlorophyll</strong>. Site of <strong>photosynthesis</strong> (making food using sunlight). "Kitchen of the cell."</li>
+                        <li><strong>Chromoplasts</strong> — colourful pigments (red, orange, yellow) found in fruits and flowers.</li>
+                        <li><strong>Leucoplasts</strong> — colourless; store <strong>starch, oils, and proteins</strong> (e.g., in potatoes).</li>
+                    </ul>
+                    <div class="analogy-box">
+                        <strong>🍽️ Kitchen Analogy</strong>
+                        <p>Chloroplasts are like the <strong>kitchen</strong> — they use sunlight to cook food. Chromoplasts add colour (like paint), and leucoplasts are storage cupboards.</p>
+                    </div>
+                    <!-- Plastids SVG -->
+                    <div class="svg-container">
+                        <svg width="500" height="150" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Chloroplast -->
+                            <ellipse cx="100" cy="75" rx="40" ry="25" fill="#a8d5ba" stroke="#0f5132" stroke-width="2" />
+                            <ellipse cx="100" cy="75" rx="30" ry="18" fill="#c8e6d8" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="100" cy="75" r="4" fill="#ffc107">
+                                <animate attributeName="r" values="4;8;4" dur="1s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="100" y="120" text-anchor="middle" font-size="9" fill="#0f5132" font-weight="600">Chloroplast</text>
+                            <path d="M60 50 L30 30" class="arrow-path" />
+                            <text x="10" y="25" font-size="8" fill="#0f5132">☀️ Sunlight</text>
+
+                            <!-- Chromoplast -->
+                            <ellipse cx="250" cy="75" rx="35" ry="25" fill="#f5d0b8" stroke="#d97a3a" stroke-width="2" />
+                            <circle cx="240" cy="70" r="6" fill="#e67e22" />
+                            <circle cx="260" cy="80" r="5" fill="#d35400" />
+                            <text x="250" y="120" text-anchor="middle" font-size="9" fill="#0f5132" font-weight="600">Chromoplast</text>
+
+                            <!-- Leucoplast -->
+                            <ellipse cx="400" cy="75" rx="35" ry="25" fill="#f2faf5" stroke="#198754" stroke-width="2" />
+                            <ellipse cx="400" cy="75" rx="15" ry="10" fill="#d4e8de" />
+                            <text x="400" y="120" text-anchor="middle" font-size="9" fill="#0f5132" font-weight="600">Leucoplast</text>
+
+                            <path d="M285 75 L355 75" class="arrow-path-light" />
+                            <text x="320" y="145" text-anchor="middle" font-size="9" fill="#198754">Storage (starch, oils)</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.4')">← Previous Section</button>
+                    <span class="page-indicator">2.3.5 · Plastids</span>
+                    <button onclick="navigateTo('page-2.3.6')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.3.6: Vacuoles -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.3.6">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.3.6')">🔊 Listen to Page</button>
+                    <h2>2.3.6 Vacuoles — Storage Tanks</h2>
+                    <p>A <strong>vacuole</strong> is a membrane-bound sac used for storage of water, food, waste, or other substances. Its membrane is called the <strong>tonoplast</strong>.</p>
+                    <ul>
+                        <li><strong>Plant cells</strong> — have one large, permanent <strong>central vacuole</strong> filled with cell sap. It provides <strong>turgidity</strong> (firmness) and rigidity.</li>
+                        <li><strong>Animal cells</strong> — have many small, temporary vacuoles.</li>
+                    </ul>
+                    <div class="analogy-box">
+                        <strong>🏠 House Water Tank Analogy</strong>
+                        <p>The large vacuole in a plant cell is like a <strong>big water tank</strong> — it keeps the structure standing tall. If it empties, the plant wilts.</p>
+                    </div>
+                    <!-- Vacuoles SVG -->
+                    <div class="svg-container">
+                        <svg width="500" height="150" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Plant cell -->
+                            <rect x="20" y="20" width="180" height="110" rx="8" fill="#eaf5ef" stroke="#0f5132" stroke-width="2" />
+                            <rect x="60" y="35" width="100" height="80" rx="6" fill="#d4e8de" stroke="#198754" stroke-width="2" />
+                            <text x="110" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#0f5132">Vacuole</text>
+                            <text x="110" y="145" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Plant cell (large central)</text>
+                            <path d="M160 35 L200 20" class="arrow-path" />
+                            <text x="205" y="18" font-size="8" fill="#0f5132">Tonoplast</text>
+
+                            <!-- Animal cell -->
+                            <circle cx="350" cy="75" r="50" fill="#f2faf5" stroke="#0f5132" stroke-width="2" />
+                            <circle cx="330" cy="60" r="10" fill="#d4e8de" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="370" cy="90" r="8" fill="#d4e8de" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="340" cy="100" r="6" fill="#d4e8de" stroke="#198754" stroke-width="1.5" />
+                            <text x="350" y="145" text-anchor="middle" font-size="10" fill="#0f5132" font-weight="600">Animal cell (small vacuoles)</text>
+                            <path d="M400 75 L430 75" class="arrow-path-light" />
+                            <text x="435" y="78" font-size="8" fill="#198754">many small</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.5')">← Previous Section</button>
+                    <span class="page-indicator">2.3.6 · Vacuoles</span>
+                    <button onclick="navigateTo('page-2.4')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2.4: Cell Division -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-2.4">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-2.4')">🔊 Listen to Page</button>
+                    <h2>2.4 Cell Division</h2>
+                    <p>Cells divide to grow, repair, and reproduce. There are two main types:</p>
+
+                    <h3>🧬 Mitosis — Growth &amp; Repair</h3>
+                    <p>1 parent cell splits into <strong>2 identical daughter cells</strong>. Chromosome number stays the same. Used for growth and repairing damaged tissues.</p>
+                    <div class="analogy-box">
+                        <strong>📄 Photocopier Analogy</strong>
+                        <p>Mitosis is like <strong>photocopying</strong> a document — you put in ONE original and get TWO identical copies.</p>
+                    </div>
+
+                    <h3>🧬 Meiosis — Reproduction</h3>
+                    <p>1 cell divides <strong>twice</strong> to make <strong>4 non-identical gamete cells</strong> (sperm/egg) with <strong>half</strong> the original chromosome number.</p>
+                    <div class="analogy-box">
+                        <strong>🃏 Card Deck Shuffling</strong>
+                        <p>Meiosis is like splitting a deck of 52 cards into 4 smaller, shuffled hands — each hand gets half the original number and a unique mix.</p>
+                    </div>
+
+                    <!-- Cell Division SVG -->
+                    <div class="svg-container">
+                        <svg width="550" height="200" viewBox="0 0 550 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Mitosis -->
+                            <rect x="10" y="10" width="250" height="180" rx="12" fill="#eaf5ef" stroke="#0f5132" stroke-width="2" />
+                            <text x="135" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="#0f5132">MITOSIS</text>
+                            <circle cx="135" cy="70" r="20" fill="#d4e8de" stroke="#0f5132" stroke-width="2" />
+                            <text x="135" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#0f5132">1</text>
+                            <path d="M135 90 L135 105" stroke="#0f5132" stroke-width="2" />
+                            <circle cx="95" cy="130" r="16" fill="#c0dccd" stroke="#198754" stroke-width="2" />
+                            <circle cx="175" cy="130" r="16" fill="#c0dccd" stroke="#198754" stroke-width="2" />
+                            <text x="95" y="135" text-anchor="middle" font-size="9" font-weight="600" fill="#0f5132">2</text>
+                            <text x="175" y="135" text-anchor="middle" font-size="9" font-weight="600" fill="#0f5132">2</text>
+                            <text x="135" y="180" text-anchor="middle" font-size="10" fill="#4d6b5f">2 identical daughter cells</text>
+
+                            <!-- Meiosis -->
+                            <rect x="290" y="10" width="240" height="180" rx="12" fill="#f2faf5" stroke="#0f5132" stroke-width="2" />
+                            <text x="410" y="34" text-anchor="middle" font-size="14" font-weight="700" fill="#0f5132">MEIOSIS</text>
+                            <circle cx="410" cy="70" r="20" fill="#d4e8de" stroke="#0f5132" stroke-width="2" />
+                            <text x="410" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#0f5132">1</text>
+                            <path d="M410 90 L410 105" stroke="#0f5132" stroke-width="2" />
+                            <circle cx="380" cy="120" r="14" fill="#f0d8d8" stroke="#b34a4a" stroke-width="2" />
+                            <circle cx="440" cy="120" r="14" fill="#f0d8d8" stroke="#b34a4a" stroke-width="2" />
+                            <path d="M380 134 L370 148" stroke="#b34a4a" stroke-width="1.5" />
+                            <path d="M440 134 L450 148" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="350" cy="160" r="12" fill="#f5e0e0" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="390" cy="160" r="12" fill="#f5e0e0" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="430" cy="160" r="12" fill="#f5e0e0" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="470" cy="160" r="12" fill="#f5e0e0" stroke="#b34a4a" stroke-width="1.5" />
+                            <text x="410" y="188" text-anchor="middle" font-size="10" fill="#4d6b5f">4 unique gametes</text>
+
+                            <defs>
+                                <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                                    <path d="M0,0 L6,3 L0,6" fill="#0f5132" />
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.3.6')">← Previous Section</button>
+                    <span class="page-indicator">2.4 · Cell Division</span>
+                    <button onclick="navigateTo('page-cancer')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Unregulated Division (Cancer) -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-cancer">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-cancer')">🔊 Listen to Page</button>
+                    <h2>⚠️ Unregulated Division — Cancer</h2>
+                    <p>Normal cells follow a rule called <strong>contact inhibition</strong> — they stop dividing when they touch neighbouring cells. This prevents overcrowding.</p>
+                    <p>In <strong>cancer</strong>, cells lose this rule and divide out of control, forming a lump called a <strong>tumour</strong>. These cells ignore the "stop dividing" signal and keep multiplying.</p>
+                    <p>In plants, similar uncontrolled growth can cause <strong>crown gall disease</strong> (tumour-like growths).</p>
+                    <div class="analogy-box">
+                        <strong>🚇 Lift Analogy</strong>
+                        <p>Imagine people in a lift — once it's full, people stop entering (contact inhibition). In cancer, this rule is broken, and cells keep forcing their way in even when there's no space, causing chaos (a tumour).</p>
+                    </div>
+                    <!-- Cancer SVG -->
+                    <div class="svg-container">
+                        <svg width="500" height="160" viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="200" height="130" rx="10" fill="#eaf5ef" stroke="#0f5132" stroke-width="2" />
+                            <circle cx="60" cy="50" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="120" cy="50" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="180" cy="50" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="60" cy="100" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="120" cy="100" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <circle cx="180" cy="100" r="15" fill="#c0dccd" stroke="#198754" stroke-width="1.5" />
+                            <text x="120" y="155" text-anchor="middle" font-size="11" fill="#0f5132" font-weight="600">Normal cells (contact inhibition)</text>
+
+                            <rect x="280" y="10" width="200" height="130" rx="10" fill="#f8dddd" stroke="#b34a4a" stroke-width="2" />
+                            <circle cx="320" cy="40" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="360" cy="50" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="400" cy="40" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="440" cy="50" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="310" cy="80" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="350" cy="90" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="390" cy="80" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="430" cy="90" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="330" cy="120" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="380" cy="120" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <circle cx="420" cy="120" r="15" fill="#f0d8d8" stroke="#b34a4a" stroke-width="1.5" />
+                            <text x="380" y="155" text-anchor="middle" font-size="11" fill="#b34a4a" font-weight="600">Cancer cells (uncontrolled division)</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-2.4')">← Previous Section</button>
+                    <span class="page-indicator">⚠️ Cancer · Unregulated Division</span>
+                    <button onclick="navigateTo('page-exam')">Next Section →</button>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Interactive Exam Center -->
+            <!-- ============================================================ -->
+            <section class="page" id="page-exam">
+                <div class="content-card">
+                    <button class="listen-btn" onclick="speakPage('page-exam')">🔊 Listen to Page</button>
+                    <h2>📝 Interactive Exam Center</h2>
+                    <p style="margin-bottom:16px;">Quick revision + 5-question quiz. Test your knowledge!</p>
+
+                    <h3>📌 Quick-Revision Summary</h3>
+                    <ul>
+                        <li><strong>Cell</strong> = smallest unit of life. Discovered by Robert Hooke (1665).</li>
+                        <li><strong>Cell Theory:</strong> All living things are made of cells; cell is the basic unit; all cells come from existing cells.</li>
+                        <li><strong>Membrane:</strong> selectively permeable; diffusion (gases) and osmosis (water).</li>
+                        <li><strong>Cell wall:</strong> rigid, made of cellulose (plants only).</li>
+                        <li><strong>Prokaryotic</strong> = no true nucleus (bacteria); <strong>Eukaryotic</strong> = true nucleus (plants/animals).</li>
+                        <li><strong>Nucleus</strong> = control centre, contains DNA/genes.</li>
+                        <li><strong>ER:</strong> RER (proteins) and SER (lipids).</li>
+                        <li><strong>Golgi:</strong> packaging and shipping.</li>
+                        <li><strong>Mitochondria:</strong> powerhouse, ATP, cristae, semi-autonomous.</li>
+                        <li><strong>Plastids:</strong> chloroplasts (photosynthesis), chromoplasts (colour), leucoplasts (storage).</li>
+                        <li><strong>Lysosomes:</strong> "suicide bags" — digestion and self-destruct.</li>
+                        <li><strong>Vacuoles:</strong> storage; large in plant cells, small in animal cells.</li>
+                        <li><strong>Mitosis:</strong> 1 → 2 identical (growth/repair).</li>
+                        <li><strong>Meiosis:</strong> 1 → 4 unique gametes (reproduction).</li>
+                        <li><strong>Cancer:</strong> loss of contact inhibition → uncontrolled division.</li>
+                    </ul>
+
+                    <h3 style="margin-top:24px;">🧪 5-Question Quiz</h3>
+                    <div id="quizContainer"></div>
+                    <div class="quiz-score" id="quizScore">Score: 0 / 5</div>
+                </div>
+                <div class="nav-controls">
+                    <button onclick="navigateTo('page-cancer')">← Previous Section</button>
+                    <span class="page-indicator">📝 Exam Center</span>
+                    <button onclick="navigateTo('page-dashboard')">🏠 Dashboard</button>
+                </div>
+            </section>
+
+        </div><!-- /page-container -->
+    </div><!-- /app-wrap -->
+
+    <script>
+        // ─────────────────────────────────────────────────────────────
+        // NAVIGATION
+        // ─────────────────────────────────────────────────────────────
+        const pageOrder = [
+            'page-dashboard',
+            'page-2.1',
+            'page-2.1.1',
+            'page-2.2',
+            'page-2.2.1',
+            'page-2.2.2',
+            'page-2.2.3',
+            'page-2.2.4',
+            'page-2.3',
+            'page-2.3.1',
+            'page-2.3.2',
+            'page-2.3.3',
+            'page-2.3.4',
+            'page-2.3.5',
+            'page-2.3.6',
+            'page-2.4',
+            'page-cancer',
+            'page-exam'
+        ];
+
+        let currentPageIndex = 0;
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('#tabNav button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.page === pageId);
+            });
+            const idx = pageOrder.indexOf(pageId);
+            if (idx !== -1) currentPageIndex = idx;
+            const container = document.getElementById('pageContainer');
+            if (container) container.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('#tabNav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                navigateTo(this.dataset.page);
+            });
+        });
+
+        // ─────────────────────────────────────────────────────────────
+        // FULLSCREEN TOGGLE
+        // ─────────────────────────────────────────────────────────────
+        function toggleFullscreen() {
+            const btn = document.getElementById('fullscreenBtn');
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    if (btn) btn.innerHTML = '✕ Exit Full Screen';
+                }).catch(() => {});
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        document.addEventListener('fullscreenchange', function() {
+            const btn = document.getElementById('fullscreenBtn');
+            if (!btn) return;
+            btn.innerHTML = document.fullscreenElement ? '✕ Exit Full Screen' : '⛶ Full Screen';
+        });
+
+        // ─────────────────────────────────────────────────────────────
+        // TEXT-TO-SPEECH
+        // ─────────────────────────────────────────────────────────────
+        function speakPage(pageId) {
+            const el = document.getElementById(pageId);
+            if (!el) return;
+            const text = el.innerText || el.textContent;
+            if (!text) return;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                utterance.pitch = 1.05;
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        // OSMOSIS SIMULATOR
+        // ─────────────────────────────────────────────────────────────
+        function setOsmosis(type) {
+            const box = document.getElementById('cellBox');
+            const inner = document.getElementById('cellInner');
+            const label = document.getElementById('osmosisLabel');
+
+            box.style.width = '140px';
+            box.style.height = '140px';
+            box.style.background = '#d4e8de';
+            inner.style.width = '70%';
+            inner.style.height = '70%';
+            inner.style.background = '#b8d9c8';
+            box.style.borderColor = '#0f5132';
+
+            if (type === 'hypo') {
+                box.style.width = '170px';
+                box.style.height = '170px';
+                box.style.background = '#c8e6d8';
+                inner.style.width = '80%';
+                inner.style.height = '80%';
+                inner.style.background = '#a8d5ba';
+                label.innerHTML = '💧 <strong>Hypotonic:</strong> Water enters the cell → cell swells (turgidity).';
+                label.style.color = '#0a4a2a';
+            } else if (type === 'iso') {
+                box.style.width = '140px';
+                box.style.height = '140px';
+                box.style.background = '#d4e8de';
+                inner.style.width = '70%';
+                inner.style.height = '70%';
+                inner.style.background = '#b8d9c8';
+                label.innerHTML = '⚖️ <strong>Isotonic:</strong> Balanced water movement → cell stays normal.';
+                label.style.color = '#0f5132';
+            } else if (type === 'hyper') {
+                box.style.width = '110px';
+                box.style.height = '110px';
+                box.style.background = '#f0d8d8';
+                inner.style.width = '50%';
+                inner.style.height = '50%';
+                inner.style.background = '#dbb5b5';
+                label.innerHTML = '🧂 <strong>Hypertonic:</strong> Water leaves the cell → cell shrinks (plasmolysis).';
+                label.style.color = '#6b2e2e';
+            }
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        // QUIZ
+        // ─────────────────────────────────────────────────────────────
+        const quizData = [{
+            q: 'Who discovered the nucleus?',
+            options: ['Robert Hooke', 'Anton van Leeuwenhoek', 'Robert Brown', 'Schleiden'],
+            correct: 2,
+            explanation: 'Robert Brown discovered the nucleus in 1831.'
+        }, {
+            q: 'What is the function of the cell wall in plants?',
+            options: ['Selective permeability', 'Energy production', 'Rigid support and protection', 'Protein synthesis'],
+            correct: 2,
+            explanation: 'The cell wall provides rigid support and protection, made of cellulose.'
+        }, {
+            q: 'Which organelle is called the "powerhouse of the cell"?',
+            options: ['Golgi apparatus', 'Mitochondria', 'ER', 'Lysosomes'],
+            correct: 1,
+            explanation: 'Mitochondria produce ATP energy and are called the powerhouse.'
+        }, {
+            q: 'What is the main difference between prokaryotic and eukaryotic cells?',
+            options: ['Size only', 'Presence of a true nucleus', 'Cell wall presence', 'Type of DNA'],
+            correct: 1,
+            explanation: 'Eukaryotic cells have a true nucleus; prokaryotic cells do not.'
+        }, {
+            q: 'During which process does 1 cell divide to form 4 unique gametes?',
+            options: ['Mitosis', 'Meiosis', 'Osmosis', 'Endocytosis'],
+            correct: 1,
+            explanation: 'Meiosis produces 4 non-identical gametes with half the chromosome number.'
+        }];
+
+        let quizAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+            quizData.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-item';
+                div.innerHTML = `
+                    <div class="q-text">${idx+1}. ${item.q}</div>
+                    <div class="options">
+                        ${item.options.map((opt, oi) => `
+                            <label>
+                                <input type="radio" name="q${idx}" value="${oi}" data-q="${idx}" data-opt="${oi}">
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback-${idx}"></div>
+                `;
+                container.appendChild(div);
+
+                div.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        const qIdx = parseInt(this.dataset.q);
+                        const optVal = parseInt(this.dataset.opt);
+                        quizAnswers[qIdx] = optVal;
+                        checkQuiz();
+                    });
+                });
+            });
+            updateScore();
+        }
+
+        function checkQuiz() {
+            let correct = 0;
+            quizData.forEach((item, idx) => {
+                const fb = document.getElementById(`feedback-${idx}`);
+                const selected = quizAnswers[idx];
+                const isCorrect = (selected === item.correct);
+                if (selected !== undefined) {
+                    fb.classList.add('show');
+                    fb.classList.remove('correct', 'incorrect');
+                    if (isCorrect) {
+                        fb.classList.add('correct');
+                        fb.innerHTML = `✅ Correct! ${item.explanation}`;
+                        correct++;
+                    } else {
+                        fb.classList.add('incorrect');
+                        fb.innerHTML = `❌ Oops! ${item.explanation}`;
+                    }
+                } else {
+                    fb.classList.remove('show');
+                }
+            });
+            document.getElementById('quizScore').textContent = `Score: ${correct} / ${quizData.length}`;
+        }
+
+        function updateScore() {
+            let correct = 0;
+            quizData.forEach((item, idx) => {
+                if (quizAnswers[idx] === item.correct) correct++;
+            });
+            document.getElementById('quizScore').textContent = `Score: ${correct} / ${quizData.length}`;
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        // INIT
+        // ─────────────────────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuiz();
+            navigateTo('page-dashboard');
+        });
+
+        const origNavigate = navigateTo;
+        navigateTo = function(pageId) {
+            origNavigate(pageId);
+            if (pageId === 'page-exam') {
+                updateScore();
+            }
+        };
+    </script>
+</body>
+</html>
